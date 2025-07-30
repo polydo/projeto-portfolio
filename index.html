@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Yuri Polido</title>
+    <link rel="icon" href="data.png">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+   
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#dashboards">Dashboards</a>
+            <a href="#projects">Certificados</a>
+            <a href="#skills">Ferramentas</a>
+            <a href="#education">Trajetória</a>
+        </nav>
+
+
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-img">
+            <img src="yurip.jpg" alt="">
+        </div>
+
+        <div class="home-content">
+            <h3>Olá,</h3>
+            <h1>Sou <span>Yuri</span></h1>
+
+            <p>Analista de Dados, Inovação, Projetos, Qualidade e Melhoria Contínua. Já atuei em inteligência
+                de mercado no ramo de bebidas e atualmente lidero os setores de Dados e Inovação para Saúde e Segurança do Trabalho na indústria.
+            </p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/ypolido/" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
+            </div>
+
+            <div class="button-container">
+                <a href="mailto:yurippolido@gmail.com" class="btn">CONTACTAR</a>
+                <a href="https://github.com/polydo/curriculo/blob/main/CURRICULO-YURI-P.pdf" target="_blank" class="btn">CURRICULO</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="dashboards" id="dashboards">
+  <h2 class="heading">Dashboards</h2>
+<div class="carousel-container">
+	<button class="nav-arrow left">‹</button>
+	<div class="carousel-track">
+		<div class="card" data-index="0">
+			<img src="ssma.png" alt="Team Member 1">
+		</div>
+		<div class="card" data-index="1">
+			<img src="eventos.png" alt="Team Member 2">
+		</div>
+		<div class="card" data-index="2">
+			<img src="pda.png" alt="Team Member 3">
+		</div>
+		<div class="card" data-index="3">
+			<img src="atento.png" alt="Team Member 4">
+		</div>
+		<div class="card" data-index="4">
+			<img src="om.png" alt="Team Member 5">
+		</div>
+		<div class="card" data-index="5">
+			<img src="almoxarifado.png" alt="Team Member 6">
+		</div>
+	</div>
+	<button class="nav-arrow right">›</button>
+</div>
+
+<div class="member-info">
+	<h2 class="member-name">David Kim</h2>
+	<p class="member-role">Founder</p>
+</div>
+
+<div class="dots">
+	<div class="dot active" data-index="0"></div>
+	<div class="dot" data-index="1"></div>
+	<div class="dot" data-index="2"></div>
+	<div class="dot" data-index="3"></div>
+	<div class="dot" data-index="4"></div>
+	<div class="dot" data-index="5"></div>
+</div>
+
+<script>
+const teamMembers = [
+	{ name: "Gestão de SSMA", link: "https://youtu.be/cx1rVfUThSI" },
+	{ name: "Controle de Eventos", link: "https://www.linkedin.com/posts/ypolido_seguranaexadotrabalho-saudeocupacional-prevenaexaetodeacidentes-activity-7354154116471840770-z2ds?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB38vVoBObnOlLbaf0yPEGEpDLl7hpPb2zs" },
+	{ name: "Planos de Ação", link: "https://youtu.be/Rv8cgFEgftc" },
+	{ name: "Testes de Atenção",  link: "https://youtu.be/VkS9YFoIXwA" },
+	{ name: "Retorno de OM", link: "https://www.linkedin.com/posts/ypolido_dashboard-destinado-ao-time-operacional-para-activity-7270068875738718209-GFwt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB38vVoBObnOlLbaf0yPEGEpDLl7hpPb2zs" },
+	{ name: "Almoxarifado", link: "https://www.linkedin.com/posts/ypolido_dashboard-desenvolvido-para-o-controle-de-activity-7262616497351495680-8ttv?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB38vVoBObnOlLbaf0yPEGEpDLl7hpPb2zs" }
+];
+
+const cards = document.querySelectorAll(".card");
+const dots = document.querySelectorAll(".dot");
+const memberName = document.querySelector(".member-name");
+const memberRole = document.querySelector(".member-role");
+const leftArrow = document.querySelector(".nav-arrow.left");
+const rightArrow = document.querySelector(".nav-arrow.right");
+let currentIndex = 0;
+let isAnimating = false;
+
+function updateCarousel(newIndex) {
+	if (isAnimating) return;
+	isAnimating = true;
+
+	currentIndex = (newIndex + cards.length) % cards.length;
+
+	cards.forEach((card, i) => {
+		const offset = (i - currentIndex + cards.length) % cards.length;
+
+		card.classList.remove(
+			"center",
+			"left-1",
+			"left-2",
+			"right-1",
+			"right-2",
+			"hidden"
+		);
+
+		if (offset === 0) {
+			card.classList.add("center");
+		} else if (offset === 1) {
+			card.classList.add("right-1");
+		} else if (offset === 2) {
+			card.classList.add("right-2");
+		} else if (offset === cards.length - 1) {
+			card.classList.add("left-1");
+		} else if (offset === cards.length - 2) {
+			card.classList.add("left-2");
+		} else {
+			card.classList.add("hidden");
+		}
+	});
+
+	dots.forEach((dot, i) => {
+		dot.classList.toggle("active", i === currentIndex);
+	});
+
+	memberName.style.opacity = "0";
+	memberRole.style.opacity = "0";
+
+	setTimeout(() => {
+		// Título sem link e "🔗" separado abaixo como link
+		memberName.innerHTML = `${teamMembers[currentIndex].name}<br><a href="${teamMembers[currentIndex].link}" target="_blank"; text-decoration: none;">🔗</a>`;
+		memberRole.textContent = "";
+		memberName.style.opacity = "1";
+		memberRole.style.opacity = "1";
+	}, 300);
+
+	setTimeout(() => {
+		isAnimating = false;
+	}, 800);
+}
+
+leftArrow.addEventListener("click", () => {
+	updateCarousel(currentIndex - 1);
+});
+
+rightArrow.addEventListener("click", () => {
+	updateCarousel(currentIndex + 1);
+});
+
+dots.forEach((dot, i) => {
+	dot.addEventListener("click", () => {
+		updateCarousel(i);
+	});
+});
+
+cards.forEach((card, i) => {
+	card.addEventListener("click", () => {
+		updateCarousel(i);
+	});
+});
+
+document.addEventListener("keydown", (e) => {
+	if (e.key === "ArrowLeft") {
+		updateCarousel(currentIndex - 1);
+	} else if (e.key === "ArrowRight") {
+		updateCarousel(currentIndex + 1);
+	}
+});
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("touchstart", (e) => {
+	touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", (e) => {
+	touchEndX = e.changedTouches[0].screenX;
+	handleSwipe();
+});
+
+function handleSwipe() {
+	const swipeThreshold = 50;
+	const diff = touchStartX - touchEndX;
+
+	if (Math.abs(diff) > swipeThreshold) {
+		if (diff > 0) {
+			updateCarousel(currentIndex + 1);
+		} else {
+			updateCarousel(currentIndex - 1);
+		}
+	}
+}
+
+updateCarousel(0);
+</script>
+
+
+</section>
+
+
+    <section class="projects" id="projects">
+        <h2 class="heading">Certificados</h2>
+        
+        <div class="projects-container">
+            <div class="projects-box">
+                <div class="projects-info">
+                    <img src="certificadopbi.jpg" alt="">
+                    <h4>Aperfeiçoamento em BI com Power BI</h1>
+                    </div>
+            </div>    
+            
+            <div class="projects-box">
+                <img src="data.jpg" alt="Data analyst">
+                <div class="projects-info">
+                    <img src="certificadogreenbelt.jpg" alt="">
+                    <h4>Six Sigma GreenBelt</h4>
+                    </div>    
+            </div>
+        </div>
+    </section>
+    <section class="skills" id="skills">
+        <h2 class="heading">Ferramentas</h2>
+
+        <div class="skills-bars">
+
+
+            <div class="bar">
+                <div class="info">
+                    <span> Inteligência de Negócios </span>
+                </div>
+                <div class="progress-line data">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="bar">
+                <div class="info">
+                    <span>SQL</span>
+                </div>
+                <div class="progress-line mysql">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="bar">
+                <div class="info">
+                    <span>Power BI</span>
+                </div>
+                <div class="progress-line cyber">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="bar">
+                <div class="info">
+                    <span>Excel</span>
+                </div>
+                <div class="progress-line sales">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="bar">
+                <div class="info">
+                    <span>VBA - Excel</span>
+                </div>
+                <div class="progress-line electronica">
+                    <span></span>
+                </div>
+            </div>
+
+
+            <div class="bar">
+                <div class="info">
+                    <span>POO</span>
+                </div>
+                <div class="progress-line helpdesk">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="education">
+        <h2 class="heading">Trajetória</h2>
+        <div class="timeline-items">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2018 - 2020</div>
+                <div class="timeline-content">
+                    <h3>Rede Municipal de Educação</h3>
+                    <p> Atuação como professor auxiliar em educação Especial</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2020 - 2023</div>
+                <div class="timeline-content">
+                    <h3> Ministério da Economia </h3>
+                    <p>Assistente Administrativo</p>
+                    <br><p>
+                        <ul>
+                            <li>Digitalização e cadastramento de processos</li>
+                            <li>Redação e manutenção de planilhas em Excel</li>
+                            <li>Expedição de notificações oficiais</li>
+                            <li>Redação de ofícios e termos</li>
+                            <li>Atendimento ao público</li>                          
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 - 2024</div>
+                <div class="timeline-content">
+                    <h3>Lippaus Distribuidora</h3>
+                    <p>Estagiário em Análise de Dados</p>
+                    <br><p>Coleta, organização, análise, compartilhamento e monitoramento de informações, oferecendo suporte em dados para todos os setores da empresa, com foco em comercial e logística.
+                         Operações com Excel avançado, automatização de processos com VBA - Excel, 
+                         vinculação à bancos de dados às planilhas com DBMaker e SQL Server. 
+                         Operações com Tableau. Criação de rotinas, coleta e monitoramento de informações em Pipefy. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024 - Atualmente</div>
+                <div class="timeline-content">
+                    <h3>Grupo GPS - Ormec Engenharia</h3>
+                    <p> Desenvolvimento de projetos e otimização de 
+processos através de checklists e rotinas personalizadas em sistemas 
+internos. Especialização em dados. Extração em SQL Server, PostgreSQL 
+e API’s Rest para coleta e organização, e Power BI e Excel, para criação e 
+manutenção de dashboards dinâmicos. Além de VBA Excel para automação 
+de tarefas cotidianas dos mais variados setores  Foco em transformar 
+dados em insights acionáveis para impulsionar a excelência operacional. </p>
+                </div>
+            </div>
+
+
+    <footer class="footer">
+        <div class="social">
+            <a href="https://www.linkedin.com/in/ypolido/" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
+                
+        </div>
+
+    </footer>
+</body>
+</html>
